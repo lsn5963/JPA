@@ -11,9 +11,6 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try{
-            List<Member> query = em.createQuery("select m from Member as m", Member.class)
-                    .getResultList();
-
             tx.commit();
         }catch (Exception e){
             tx.rollback();
