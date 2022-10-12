@@ -10,25 +10,14 @@ import java.util.Date;
 @Getter
 @Setter
 public class Member {
-    @Id
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "USERNAME")
     private String username;
-    private Integer age;
 
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
-
-    @Lob
-    private String description;
-
-//Getter, Setter…
-
+    @ManyToOne //하나의 팀에 여러 멤버가 포함될 수 있으므로
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 }
