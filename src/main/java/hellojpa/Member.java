@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.util.Date;
 @Entity
 @Getter
-@Setter
 public class Member {
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
@@ -20,4 +19,18 @@ public class Member {
     @ManyToOne //하나의 팀에 여러 멤버가 포함될 수 있으므로
     @JoinColumn(name = "TEAM_ID")
     private Team team;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+
+        team.getMembers().add(this);
+    }
 }
