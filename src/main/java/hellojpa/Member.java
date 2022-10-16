@@ -16,7 +16,7 @@ public class Member extends BaseEntity{
     @Column(name = "USERNAME")
     private String username;
 
-    @ManyToOne //하나의 팀에 여러 멤버가 포함될 수 있으므로
+    @ManyToOne(fetch = FetchType.LAZY) //하나의 팀에 여러 멤버가 포함될 수 있으므로   LAZY를 사용하면 TEAM객체가 프록시로 넘어감
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
